@@ -36,3 +36,9 @@ int main(int argc, char *argv[])
 
 	return(0);
 }
+
+
+
+ASSIGNMENT
+
+WRITE a  TCP client program that takes time from time server time-a-g.nist.gov and prints current time in INDIA.
