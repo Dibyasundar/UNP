@@ -62,10 +62,14 @@ int main(int argc, char *argv[])
 	    hr=hr-24;
     }
     char *m;
-    if (hr>=12)
+    if (hr>12)
     {
 	    m="PM";
 	    hr=hr-12;
+    }
+    if (hr==12)
+    {
+	    m="PM";
     }
     else
     {
