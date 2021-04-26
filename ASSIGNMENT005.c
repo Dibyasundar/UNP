@@ -15,7 +15,7 @@
 int main(int argc, char *argv[])
 {
     int n;
-    char data[201];
+    char *data;
     //create a socket
     int net_socket;
     net_socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -40,6 +40,7 @@ int main(int argc, char *argv[])
     while(1)
     {
 	    fd=accept(net_socket,(struct sockaddr*)&client_address,&c);
+      data = (char *) malloc(200*sizeof(char));
 	    n=recv(fd, data,200,0);
       k=0;
 	    for(i=0;i<strlen(data);i++)
@@ -62,14 +63,18 @@ int main(int argc, char *argv[])
         num2[k]=data[i];
         k=k+1;
       }
-      sprintf(str, "Sum of %s and %s is %d", num1, num2, atoi(num1)+atoi(num2));
+      num2[k]='\0';
+      sprintf(str, "Sum of %d and %d is %d", atoi(num1), atoi(num2) atoi(num1)+atoi(num2));
 
       //sending the data to client_address
 	    write(fd,str,strlen(str));
+      close(fd);
+      free(data);
     }
 
     return(0);
 }
+
 
   
 //
@@ -85,6 +90,7 @@ int main(int argc, char *argv[])
 #include<string.h>
 int main(int argc, char *argv[])
 {
+    fflush(stdin);
     int n;
     char data[201];
     //create a socket
@@ -108,8 +114,6 @@ int main(int argc, char *argv[])
     close(net_socket);
     return(0);
 }
-
-
 
 
 
