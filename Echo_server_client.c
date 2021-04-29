@@ -17,7 +17,7 @@
 int main(int argc, char *argv[])
 {
     int n;
-    char data[201];
+    char *data;
     //create a socket
     int net_socket;
     net_socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -35,17 +35,32 @@ int main(int argc, char *argv[])
 
     int fd;
     int c;
+    pid_t pid;
 
     while(1)
     {
 	    fd=accept(net_socket,(struct sockaddr*)&client_address,&c);
-	    printf("Accepted\n");
-      n=recv(fd, data,200,0);
-	    write(fd,data,strlen(data));
+      if ((pid = fork())==0)
+      {
+        close(net_socket);
+        while(1)
+        {
+          data = (char *) malloc (200*sizeof(char));
+          n=recv(fd, data,200,0);
+          printf("%s",data);
+          write(fd,data,strlen(data));
+          free(data);
+        }
+      }
+      else
+      {
+        close(fd);
+      }
     }
 
     return(0);
 }
+
 
 
 
