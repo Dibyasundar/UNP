@@ -63,7 +63,7 @@ int main(int argc, char *argv[])
 int main(int argc, char *argv[])
 {
     int n;
-    char data[201];
+    char *data;
     //create a socket
     int net_socket;
     net_socket = socket(AF_INET, SOCK_STREAM, 0);
@@ -76,10 +76,17 @@ int main(int argc, char *argv[])
     server_address.sin_addr.s_addr = inet_addr(argv[1]);
 
     connect( net_socket, ( struct sockaddr * ) &server_address, sizeof( server_address));
-    fgets(data, 200, stdin);
-    write(net_socket,data,strlen(data));
-    n=recv(net_socket, data,200,0);
-    printf("%s",data);
+    data = (char *) malloc (200*sizeof(char));
+    while (fgets(data, 200, stdin) !=NULL)
+    {
+      write(net_socket,data,strlen(data));
+      n=recv(net_socket, data,200,0);
+      printf("%s",data);
+      free(data);
+      fflush(stdin);
+      data = (char *) malloc (200*sizeof(char));
+    }
     close(net_socket);
     return(0);
 }
+
