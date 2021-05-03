@@ -55,7 +55,6 @@ int main(int argc, char *argv[])
               chk =1;
               printf("client is exiting\n" );
               shutdown(net_socket, SHUT_WR);
-              break;
             }
 
             write(net_socket,send_data,strlen(send_data));
