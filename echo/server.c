@@ -15,7 +15,6 @@
 int main(int argc, char *argv[])
 {
     int n;
-    char *data;
     //create a socket
     int net_socket;
     net_socket = socket(AF_INET, SOCK_STREAM, 0);
