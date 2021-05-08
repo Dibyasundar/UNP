@@ -42,7 +42,6 @@ int main(int argc, char *argv[])
         printf("%s",data);
         write(fd,data,strlen(data));
       }
-      free(data);
       close(fd);
     }
     return(0);
