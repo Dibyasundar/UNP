@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
         }
         else
         {
-              //signal(SIGCHLD, SIG_IGN);
+              signal(SIGCHLD, SIG_IGN);
 	           close(fd);
         }
         free(data);
