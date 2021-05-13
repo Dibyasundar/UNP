@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
     char str[100];
     int f=0;
     int len=sizeof(server_address);
-    sendto(net_socket, f,4,0,(struct sockaddr*)&server_address,len);
+    sendto(net_socket, &f,4,0,(struct sockaddr*)&server_address,len);
     recvfrom(net_socket, str, 100, 0, (struct sockaddr *)&server_address, &len);
     printf("Time is : %s", str);
 
