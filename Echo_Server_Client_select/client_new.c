@@ -36,7 +36,7 @@ int main(int argc, char *argv[])
     {
       FD_SET(fileno(stdin), &rset);
       FD_SET(net_socket, &rset);
-      maxfdp1 = (fileno(stdin)>net_socket)?fileno(stdin):net_socket + 1;
+      maxfdp1 = ((fileno(stdin)>net_socket)?fileno(stdin):net_socket )+ 1;
       select(maxfdp1, &rset, NULL, NULL, NULL);
       if (FD_ISSET(net_socket, &rset)) {  /* socket is readable */
             if (recv(net_socket, recv_data,200,0) == 0)
