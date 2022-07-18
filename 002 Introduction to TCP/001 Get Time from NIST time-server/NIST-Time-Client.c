@@ -45,8 +45,15 @@ int main(int argc, char *argv[])
 	char data[201];
 	int n;
 	n = recv(net_socket, data, 200, 0);
-
-	printf("%s",data);
+	if(n<0)
+	{
+		perror("read error :");
+	}
+	else if(n>0)
+	{
+		data[n] = '\0';
+		printf("%s",data);
+	}
 
 	//close the socket
 	close(net_socket);
