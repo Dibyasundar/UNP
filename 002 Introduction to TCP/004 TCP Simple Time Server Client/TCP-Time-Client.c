@@ -1,3 +1,9 @@
+// Client program Time server client application
+/*
+Author 		:	Dibyasundar Das
+Course		: 	UNP
+Last update	:	18th July 2022
+*/
 #include<stdio.h>
 
 #include<sys/socket.h>

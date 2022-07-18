@@ -1,3 +1,13 @@
+// Client program to get Indian Time from NIST time server
+// Time server url : time-a-g.nist.gov
+// Time server ip : 129.6.15.28
+// Time server port number : 13
+/*
+Author 		:	Dibyasundar Das
+Course		: 	UNP
+Last update	:	18th July 2022
+*/
+
 #include<stdio.h>
 #include<sys/socket.h>
 #include <arpa/inet.h>

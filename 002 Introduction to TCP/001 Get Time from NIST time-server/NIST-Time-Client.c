@@ -1,6 +1,6 @@
 // Client program to NIST time server
-// Time server url : 
-// Time server ip : 
+// Time server url : time-a-g.nist.gov
+// Time server ip : 129.6.15.28
 // Time server port number : 13
 /*
 Author 		:	Dibyasundar Das
