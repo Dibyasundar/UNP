@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<sys/socket.h>
+#include<arpa/inet.h>
+#include<unistd.h>
+#include<stdlib.h>
+#include<string.h>
+#include<signal.h>
+// signal(signal_id, function_name)
+int net_socket;
+void int_handel(int sig)
+{
+	printf("\n Exit from client .....\n");
+	close(net_socket);
+	exit(0);
+}
+
+int main(int argc, char *argv[])
+{
+	signal(SIGINT, int_handel);
+	// create socket
+	net_socket = socket (AF_INET, SOCK_STREAM, 0);
+	
+	// connect to server
+	// define address
+	struct sockaddr_in server_address;
+	server_address.sin_family = AF_INET;
+	server_address.sin_port = htons(atoi(argv[2]));
+	server_address.sin_addr.s_addr = inet_addr(argv[1]);
+	// call connect function
+	connect(net_socket, (struct sockaddr *) &server_address, sizeof(server_address));
+
+	//
+	//recv data
+	char data[201];
+	int n;
+	while(1)
+	{
+		printf("\nEnter : ");
+		scanf(" %s", data);
+		write(net_socket, data, strlen(data));
+		n = recv(net_socket, data, 200, 0);
+		data[n] = '\0';
+		printf("%s\n", data);
+	}
+	//close the connection
+	close(net_socket);
+	return(0);
+}
