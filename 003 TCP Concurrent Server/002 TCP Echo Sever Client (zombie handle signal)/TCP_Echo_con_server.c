@@ -8,14 +8,10 @@
 #include <signal.h>
 int net_socket;
 
-void handle_sigint(int sig)
-{
-  close(net_socket);
-  exit(0);
-}
+
 int main(int argc, char *argv[])
 {
-    signal(SIGINT, handle_sigint); // signal(SIGINT, SIG_IGN);
+    signal(SIGINT, SIG_IGN);
     net_socket = socket(AF_INET, SOCK_STREAM, 0);
 
     struct sockaddr_in server_address, client_address;
